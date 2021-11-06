@@ -6,11 +6,22 @@ const resolvers = require('./resolvers');
 
 const LaunchAPI = require('./datasources/launch');
 const UserAPI = require('./datasources/user');
+const isEmail = require('isemail');
 
 //データベースを作成する
 const store = createStore();
 
 const server = new ApolloServer({
+  //ユーザの認証
+  context: async ({ req }) => {
+    const auth = (req.headers && req.headers.authorization) || '';
+    const email = Buffer.from(auth, 'base64').toString('ascii');
+    if (!isEmail.validate(email)) return { user: null };
+    //userのemailを見つける
+    const users = await store.users.findOrCreate({ where: { email } });
+    const user = (users && users[0]) || null;
+    return { user: { ...user.dataValues } };
+  },
   typeDefs,
   resolvers,
   //dateSources関数をApolloServerに与え、graphに追加する
