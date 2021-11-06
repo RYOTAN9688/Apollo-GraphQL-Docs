@@ -16,7 +16,7 @@ class LaunchAPI extends RESTDataSource {
     return {
       id: launch.flight_number || 0,
       cursor: `${launch.launch_date_unix}`,
-      site: launch.launch_site && launch.launch_site.site.name,
+      site: launch.launch_site && launch.launch_site.site_name,
       mission: {
         name: launch.mission_name,
         missionPatchSmall: launch.links.mission_patch_small,
@@ -37,7 +37,7 @@ class LaunchAPI extends RESTDataSource {
     return this.launchReducer(response[0]);
   }
   //複数の発射予定を返す
-  getLaunchByIds({ launchIds }) {
+  getLaunchesByIds({ launchIds }) {
     return Promise.all(launchIds.map((launchId) => this.getLaunchById({ launchId })));
   }
 }
