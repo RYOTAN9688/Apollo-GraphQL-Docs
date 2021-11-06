@@ -86,10 +86,7 @@ describe('[UserAPI.cancelTrip]', () => {
 describe('[UserAPI.getLaunchIdsByUser]', () => {
   it('looks up launches by user', async () => {
     const args = { userId: 1 };
-    const launches = [
-      { dataValues: { launchId: 1 } },
-      { dataValues: { launchId: 2 } },
-    ];
+    const launches = [{ dataValues: { launchId: 1 } }, { dataValues: { launchId: 2 } }];
     mockStore.trips.findAll.mockReturnValueOnce(launches);
 
     // check the result of the fn

@@ -38,7 +38,7 @@ module.exports.constructTestServer = constructTestServer;
  * e2e Testing Utils
  */
 
-const startTestServer = async server => {
+const startTestServer = async (server) => {
   // if using apollo-server-express...
   // const app = express();
   // server.applyMiddleware({ app });
@@ -51,8 +51,7 @@ const startTestServer = async server => {
     fetch,
   });
 
-  const executeOperation = ({ query, variables = {} }) =>
-    execute(link, { query, variables });
+  const executeOperation = ({ query, variables = {} }) => execute(link, { query, variables });
 
   return {
     link,

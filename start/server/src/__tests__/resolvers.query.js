@@ -30,11 +30,7 @@ describe('[Query.launches]', () => {
     ]);
 
     // check the resolver response
-    const res = await resolvers.Query.launches(
-      null,
-      { pageSize: 1 },
-      mockContext,
-    );
+    const res = await resolvers.Query.launches(null, { pageSize: 1 }, mockContext);
     expect(res).toEqual({
       cursor: 'bar',
       hasMore: true,
@@ -50,11 +46,7 @@ describe('[Query.launches]', () => {
     ]);
 
     // check the resolver response
-    const res = await resolvers.Query.launches(
-      null,
-      { after: 'b' },
-      mockContext,
-    );
+    const res = await resolvers.Query.launches(null, { after: 'b' }, mockContext);
 
     expect(res).toEqual({
       hasMore: false,
@@ -72,11 +64,7 @@ describe('[Query.launches]', () => {
     ]);
 
     // check the resolver response
-    const res = await resolvers.Query.launches(
-      null,
-      { after: 'c', pageSize: 1 },
-      mockContext,
-    );
+    const res = await resolvers.Query.launches(null, { after: 'c', pageSize: 1 }, mockContext);
 
     expect(res).toEqual({
       cursor: 'b',

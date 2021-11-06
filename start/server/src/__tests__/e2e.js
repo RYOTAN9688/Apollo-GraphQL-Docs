@@ -56,9 +56,7 @@ describe('Server - e2e', () => {
   });
 
   it('gets a single launch', async () => {
-    const res = await toPromise(
-      graphql({ query: GET_LAUNCH, variables: { id: 30 } }),
-    );
+    const res = await toPromise(graphql({ query: GET_LAUNCH, variables: { id: 30 } }));
 
     expect(res).toMatchSnapshot();
   });

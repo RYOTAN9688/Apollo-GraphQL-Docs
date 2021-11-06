@@ -24,11 +24,7 @@ describe('[Mutation.bookTrips]', () => {
     getLaunchesByIds.mockReturnValueOnce([{ id: 999, cursor: 'foo' }]);
 
     // check the resolver response
-    const res = await resolvers.Mutation.bookTrips(
-      null,
-      { launchIds: [123] },
-      mockContext,
-    );
+    const res = await resolvers.Mutation.bookTrips(null, { launchIds: [123] }, mockContext);
     expect(res).toEqual({
       launches: [{ cursor: 'foo', id: 999 }],
       message: 'trips booked successfully',
@@ -43,11 +39,7 @@ describe('[Mutation.bookTrips]', () => {
     bookTrips.mockReturnValueOnce([]);
 
     // check the resolver response
-    const res = await resolvers.Mutation.bookTrips(
-      null,
-      { launchIds: [123] },
-      mockContext,
-    );
+    const res = await resolvers.Mutation.bookTrips(null, { launchIds: [123] }, mockContext);
 
     expect(res.message).toBeDefined();
     expect(res.success).toBeFalsy();
@@ -63,11 +55,7 @@ describe('[Mutation.cancelTrip]', () => {
     getLaunchById.mockReturnValueOnce({ id: 999, cursor: 'foo' });
 
     // check the resolver response
-    const res = await resolvers.Mutation.cancelTrip(
-      null,
-      { launchId: 123 },
-      mockContext,
-    );
+    const res = await resolvers.Mutation.cancelTrip(null, { launchId: 123 }, mockContext);
     expect(res).toEqual({
       success: true,
       message: 'trip cancelled',
@@ -82,11 +70,7 @@ describe('[Mutation.cancelTrip]', () => {
     cancelTrip.mockReturnValueOnce(false);
 
     // check the resolver response
-    const res = await resolvers.Mutation.cancelTrip(
-      null,
-      { launchId: 123 },
-      mockContext,
-    );
+    const res = await resolvers.Mutation.cancelTrip(null, { launchId: 123 }, mockContext);
     expect(res.message).toBeDefined();
     expect(res.success).toBeFalsy();
   });
